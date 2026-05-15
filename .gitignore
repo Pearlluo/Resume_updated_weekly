@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Environment Variables
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Azure Functions
+.local.settings.json
+
+# Logs
+*.log
+
+
+# Resume Cache
+resume_cache.json
+
+# Resume Downloads
+resume_downloads/
+
+# Temp Files
+temp/
+tmp/
+
+# Blob Local Cache
+blob_cache/
+
+# PDF Files
+*.pdf
+
+# Word Files
+*.docx
+
+# Generated Reports
+*.xlsx
+
+# Python build
+build/
+dist/
+*.egg-info/

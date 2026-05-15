@@ -1,0 +1,8 @@
+azure-functions
+requests
+python-dotenv
+pandas
+openpyxl
+azure-storage-blob
+PyMuPDF
+python-docx
