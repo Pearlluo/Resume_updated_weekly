@@ -1,0 +1,13 @@
+.git*
+.vscode/
+.idea/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+local.settings.json
+resume_downloads/
+*.pdf
+*.xlsx
+*.docx
