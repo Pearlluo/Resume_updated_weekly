@@ -6,14 +6,20 @@ Automated resume synchronization system for OPMS onboarding workers.
 
 ```mermaid
 flowchart TD
-    OPMS[OPMS API] -->|Weekly Monday 2AM Perth| GHA[Azure Functions / function_app.py]
-    GHA --> GET[Getonbroadingpeople.py - Fetch workers]
-    GET --> DL[GetResumeUpdated.py - Download resume]
-    DL --> UP[ResumeuploadtoBlob.py - Upload + extract]
-    UP --> BLOB[(Azure Blob Storage - resumes)]
-    BLOB --> PDF[original/employee_id/resume.pdf]
-    BLOB --> TXT[text/employee_id/resume.txt]
-    BLOB --> IDX[index/latest/employee_id.json]
+    OPMS[OPMS API]:::amber -->|Weekly Monday 2AM Perth| GHA[Azure Functions\nfunction_app.py]:::gray
+    GHA --> GET[Getonbroadingpeople.py\nFetch onboarding workers]:::gray
+    GET --> DL[GetResumeUpdated.py\nDownload latest resume]:::gray
+    DL --> UP[ResumeuploadtoBlob.py\nUpload + extract text]:::gray
+    UP --> BLOB[(Azure Blob Storage\ncontainer: resumes)]:::teal
+
+    BLOB --> PDF[original/employee_id/\nresume.pdf]:::blue
+    BLOB --> TXT[text/employee_id/\nresume.txt]:::blue
+    BLOB --> IDX[index/latest/\nemployee_id.json]:::blue
+
+    classDef amber fill:#fef3c7,stroke:#d97706,color:#92400e
+    classDef gray fill:#f3f4f6,stroke:#6b7280,color:#111827
+    classDef teal fill:#d1fae5,stroke:#059669,color:#064e3b
+    classDef blue fill:#dbeafe,stroke:#2563eb,color:#1e40af
 ```
 
 ## What this project does
@@ -46,8 +52,6 @@ Weekly Automated Resume Sync — Every Monday 2:00 AM Perth Time:
 - GitHub
 
 ## Project Structure
-
-```
 Resume_updated_weekly/
 ├── function_app.py         Azure Function entry point
 ├── GetResumeUpdated.py     Download latest resume from OPMS
@@ -57,16 +61,12 @@ Resume_updated_weekly/
 ├── requirements.txt
 ├── host.json
 └── .funcignore
-```
 
 ## Blob Storage Structure
-
-```
 resumes/
-├── original/{employee_id}/resume_{employee_id}_{document_id}.pdf
-├── text/{employee_id}/resume_{employee_id}_{document_id}.txt
+├── original/{employee_id}/resume_{employee_id}{document_id}.pdf
+├── text/{employee_id}/resume{employee_id}_{document_id}.txt
 └── index/latest/{employee_id}.json
-```
 
 ## Environment Variables
 
