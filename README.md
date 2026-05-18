@@ -1,4 +1,3 @@
-```markdown
 # Resume Updated Weekly Automation
 
 Automated resume synchronization system for OPMS onboarding workers.
@@ -7,15 +6,14 @@ Automated resume synchronization system for OPMS onboarding workers.
 
 ```mermaid
 flowchart TD
-    OPMS[OPMS API] -->|Weekly trigger Monday 2AM Perth| GHA[Azure Functions\nfunction_app.py]
-    GHA --> GET[Getonbroadingpeople.py\nFetch onboarding workers]
-    GET --> DL[GetResumeUpdated.py\nDownload latest resume]
-    DL --> UP[ResumeuploadtoBlob.py\nUpload PDF + extract text]
-    UP --> BLOB[(Azure Blob Storage\ncontainer: resumes)]
-
-    BLOB --> PDF[original/employee_id/\nresume_employee_id_doc_id.pdf]
-    BLOB --> TXT[text/employee_id/\nresume_employee_id_doc_id.txt]
-    BLOB --> IDX[index/latest/\nemployee_id.json]
+    OPMS[OPMS API] -->|Weekly Monday 2AM Perth| GHA[Azure Functions / function_app.py]
+    GHA --> GET[Getonbroadingpeople.py - Fetch workers]
+    GET --> DL[GetResumeUpdated.py - Download resume]
+    DL --> UP[ResumeuploadtoBlob.py - Upload + extract]
+    UP --> BLOB[(Azure Blob Storage - resumes)]
+    BLOB --> PDF[original/employee_id/resume.pdf]
+    BLOB --> TXT[text/employee_id/resume.txt]
+    BLOB --> IDX[index/latest/employee_id.json]
 ```
 
 ## What this project does
@@ -28,7 +26,7 @@ flowchart TD
 
 ## Features
 
-**Weekly Automated Resume Sync — Every Monday 2:00 AM Perth Time:**
+Weekly Automated Resume Sync — Every Monday 2:00 AM Perth Time:
 
 1. Load onboarding workers from OPMS
 2. Search OPMS training records and competency data
@@ -51,15 +49,14 @@ flowchart TD
 
 ```
 Resume_updated_weekly/
-│
-├── function_app.py          # Azure Function entry point — timer trigger
-├── GetResumeUpdated.py      # Download latest resume from OPMS
-├── Getonbroadingpeople.py   # Fetch onboarding worker list
-├── Getconpetency.py         # Fetch competency and ticket records
-├── ResumeuploadtoBlob.py    # Upload PDF and extract text to Blob
-├── requirements.txt         # Python dependencies
-├── host.json                # Azure Functions host config
-└── .funcignore              # Files excluded from deployment
+├── function_app.py         Azure Function entry point
+├── GetResumeUpdated.py     Download latest resume from OPMS
+├── Getonbroadingpeople.py  Fetch onboarding worker list
+├── Getconpetency.py        Fetch competency and ticket records
+├── ResumeuploadtoBlob.py   Upload PDF and extract text to Blob
+├── requirements.txt
+├── host.json
+└── .funcignore
 ```
 
 ## Blob Storage Structure
@@ -75,12 +72,11 @@ resumes/
 
 | Variable | Description |
 |---|---|
-| `OPMS_CLIENT_ID` | OPMS API client ID |
-| `OPMS_CLIENT_SECRET` | OPMS API client secret |
-| `AZURE_STORAGE_CONNECTION_STRING` | Azure Blob Storage connection string |
-| `AZURE_BLOB_CONTAINER` | Blob container name (default: resumes) |
+| OPMS_CLIENT_ID | OPMS API client ID |
+| OPMS_CLIENT_SECRET | OPMS API client secret |
+| AZURE_STORAGE_CONNECTION_STRING | Azure Blob Storage connection string |
+| AZURE_BLOB_CONTAINER | Blob container name (default: resumes) |
 
 ## Related
 
-Resume Search Portal — [ResumeFilter](https://github.com/Pearlluo/ResumeFilter) — Flask app that searches and AI-screens the resumes stored by this pipeline using keyword filtering, Deepseek pre-screening, and GPT-4o mini deep analysis.
-```
+Resume Search Portal - Flask app that searches and AI-screens the resumes stored by this pipeline using keyword filtering, Deepseek pre-screening, and GPT-4o mini deep analysis.
