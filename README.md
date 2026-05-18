@@ -51,6 +51,7 @@ Weekly Automated Resume Sync — Every Monday 2:00 AM Perth Time:
 - python-docx
 - GitHub
 
+```
 ## Project Structure
 Resume_updated_weekly/
 ├── function_app.py         Azure Function entry point
@@ -61,12 +62,15 @@ Resume_updated_weekly/
 ├── requirements.txt
 ├── host.json
 └── .funcignore
+```
 
+```
 ## Blob Storage Structure
 resumes/
 ├── original/{employee_id}/resume_{employee_id}{document_id}.pdf
 ├── text/{employee_id}/resume{employee_id}_{document_id}.txt
 └── index/latest/{employee_id}.json
+```
 
 ## Environment Variables
 
